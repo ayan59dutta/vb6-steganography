@@ -1,1 +1,1 @@
-python decode.py 2> py_error_log.txt
+python decode.py

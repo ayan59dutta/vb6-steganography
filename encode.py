@@ -1,5 +1,6 @@
 import numpy as np
 from PIL import Image
+import os
 
 def encode(password, text, image_src_path, image_dest_path):
     image = Image.open(image_src_path)
@@ -44,25 +45,26 @@ def encode(password, text, image_src_path, image_dest_path):
         flag_success = (False, error_msg)
     return flag_success
 
-def encrypt(ciphertext, key):
-    plaintext = ''
-    for character in ciphertext:
-        plaintext += chr((ord(character)+key)%256)
-    return plaintext
-
 if __name__ == '__main__':
-    fp = open('ipe.txt')
-    image_src_path = fp.readline()[:-1]
-    image_dest_path = fp.readline()[:-1]
-    password = fp.readline()[:-1]
-    text = ''
-    line = fp.readline()
-    while line != '':
-        text += line[:-1]
+    try:
+        fp = open('ipe.txt')
+        image_src_path = fp.readline()[:-1]
+        image_dest_path = fp.readline()[:-1]
+        password = fp.readline()[:-1]
+        text = ''
         line = fp.readline()
-    fp.close()
-    flag_success = encode(password, text, encrypt(image_src_path, 0), encrypt(image_dest_path, 0))
-    fp = open('ope.txt', 'w')
-    fp.write(str(flag_success[0]) + '\n')
-    fp.write(flag_success[1] + '\n')
-    fp.close()
+        while line != '':
+            text += line[:-1]
+            line = fp.readline()
+        fp.close()
+        os.remove('ipe.txt')
+        flag_success = encode(password, text, image_src_path, image_dest_path)
+        fp = open('ope.txt', 'w')
+        fp.write(str(flag_success[0]) + '\n')
+        fp.write(flag_success[1] + '\n')
+        fp.close()
+    except:
+        fp = open('ope.txt', 'w')
+        fp.write(str(False) + '\n')
+        fp.write('Encoding not possible in this image.' + '\n')
+        fp.close()

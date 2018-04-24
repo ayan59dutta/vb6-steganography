@@ -3,20 +3,41 @@ Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "comdlg32.ocx"
 Begin VB.Form EncodeForm 
    Caption         =   "Encode"
    ClientHeight    =   5985
-   ClientLeft      =   120
-   ClientTop       =   465
+   ClientLeft      =   1830
+   ClientTop       =   2475
    ClientWidth     =   14760
+   BeginProperty Font 
+      Name            =   "Times New Roman"
+      Size            =   8.25
+      Charset         =   0
+      Weight          =   400
+      Underline       =   0   'False
+      Italic          =   0   'False
+      Strikethrough   =   0   'False
+   EndProperty
+   Icon            =   "EncodeForm.frx":0000
    LinkTopic       =   "Form1"
    MDIChild        =   -1  'True
+   Picture         =   "EncodeForm.frx":1CCA0
    ScaleHeight     =   5985
    ScaleWidth      =   14760
    WindowState     =   2  'Maximized
-   Begin VB.CommandButton Command3 
-      Caption         =   "ENCODE"
+   Begin VB.CommandButton EncodeCmd 
+      Caption         =   "&ENCODE"
+      BeginProperty Font 
+         Name            =   "Lucida Calligraphy"
+         Size            =   12
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
       Left            =   2160
       TabIndex        =   11
       Top             =   5400
+      Visible         =   0   'False
       Width           =   2175
    End
    Begin MSComDlg.CommonDialog CommonDialog1 
@@ -26,8 +47,18 @@ Begin VB.Form EncodeForm
       _ExtentY        =   847
       _Version        =   393216
    End
-   Begin VB.CommandButton Command2 
+   Begin VB.CommandButton SaveCmd 
       Caption         =   "Browse"
+      Enabled         =   0   'False
+      BeginProperty Font 
+         Name            =   "Lucida Console"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   2160
       TabIndex        =   7
@@ -35,16 +66,35 @@ Begin VB.Form EncodeForm
       Width           =   1335
    End
    Begin VB.PictureBox Picture1 
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   4215
       Left            =   6720
       ScaleHeight     =   4155
       ScaleWidth      =   5115
       TabIndex        =   6
       Top             =   1080
+      Visible         =   0   'False
       Width           =   5175
    End
-   Begin VB.CommandButton Command1 
+   Begin VB.CommandButton OpenCmd 
       Caption         =   "Browse"
+      BeginProperty Font 
+         Name            =   "Lucida Console"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   2160
       TabIndex        =   2
@@ -52,6 +102,15 @@ Begin VB.Form EncodeForm
       Width           =   1335
    End
    Begin VB.TextBox PasswordBox 
+      BeginProperty Font 
+         Name            =   "Times New Roman"
+         Size            =   12
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   2160
       TabIndex        =   1
@@ -60,10 +119,19 @@ Begin VB.Form EncodeForm
       Width           =   3975
    End
    Begin VB.TextBox Text 
+      BeginProperty Font 
+         Name            =   "Times New Roman"
+         Size            =   12
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   735
       Left            =   2160
       TabIndex        =   0
-      Text            =   "Your text Here"
+      Text            =   "Enter Your Text Here"
       Top             =   1200
       Width           =   3975
    End
@@ -75,51 +143,117 @@ Begin VB.Form EncodeForm
       _Version        =   393216
    End
    Begin VB.Label Label6 
+      BackStyle       =   0  'Transparent
       Caption         =   "Destination Image"
-      Height          =   375
+      BeginProperty Font 
+         Name            =   "Trebuchet MS"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   -1  'True
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00FFFFFF&
+      Height          =   615
       Left            =   480
       TabIndex        =   10
-      Top             =   4560
+      Top             =   4320
       Width           =   1455
    End
    Begin VB.Label Label5 
+      BackStyle       =   0  'Transparent
       Caption         =   "Source Image"
+      BeginProperty Font 
+         Name            =   "Trebuchet MS"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   -1  'True
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00FFFFFF&
       Height          =   375
       Left            =   480
       TabIndex        =   9
-      Top             =   3600
+      Top             =   3480
       Width           =   1455
    End
-   Begin VB.Label Label4 
+   Begin VB.Label SavePath 
+      BackStyle       =   0  'Transparent
       Caption         =   "No File Selected!"
-      Height          =   495
+      BeginProperty Font 
+         Name            =   "Consolas"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   -1  'True
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00FFFFFF&
+      Height          =   855
       Left            =   4080
       TabIndex        =   8
-      Top             =   4560
+      Top             =   4440
       Width           =   2055
    End
-   Begin VB.Label Label3 
+   Begin VB.Label OpenPath 
+      BackStyle       =   0  'Transparent
       Caption         =   "No File Selected!"
-      Height          =   495
+      BeginProperty Font 
+         Name            =   "Consolas"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   -1  'True
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00FFFFFF&
+      Height          =   855
       Left            =   4080
       TabIndex        =   5
-      Top             =   3600
+      Top             =   3480
       Width           =   2055
    End
    Begin VB.Label Label2 
+      BackStyle       =   0  'Transparent
       Caption         =   "Password"
+      BeginProperty Font 
+         Name            =   "Trebuchet MS"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   -1  'True
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00FFFFFF&
       Height          =   615
       Left            =   480
       TabIndex        =   4
-      Top             =   2640
+      Top             =   2520
       Width           =   1095
    End
    Begin VB.Label Label1 
-      Caption         =   "Your Text Here"
+      BackStyle       =   0  'Transparent
+      Caption         =   "Text To Be Hidden"
+      BeginProperty Font 
+         Name            =   "Trebuchet MS"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   -1  'True
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00FFFFFF&
       Height          =   615
       Left            =   480
       TabIndex        =   3
-      Top             =   1440
+      Top             =   1320
       Width           =   1095
    End
 End
@@ -128,123 +262,127 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-Private Sub Command1_Click()
+Option Explicit
 
- On Error GoTo cancel
+Private Sub Form_Load()
+    Picture1.Cls
+End Sub
+
+Private Sub OpenCmd_Click()
+    Dim path As String, i As Integer
+    On Error GoTo cancel
     CommonDialog1.Filter = "Image files (*.jpg, *.png, *.bmp, *.ico)|*.jpg;*.png;*.bmp;*.ico|PNG Files (*.png)|*.png|JPEG Files (*.jpg)|*.jpg|Bitmap Files (*.bmp)|*.bmp|Icon Files (*.ico)|*.ico"
     CommonDialog1.Flags = cdlOFNFileMustExist Or cdlOFNNoChangeDir
     CommonDialog1.ShowOpen
-    Path = CommonDialog1.Filename
-    
-    If Right(Path, 3) <> "jpg" And Right(Path, 3) <> "bmp" And Right(Path, 3) <> "png" And Right(Path, 3) <> "ico" Then
+    path = CommonDialog1.Filename
+    If Right(path, 3) <> "jpg" And Right(path, 3) <> "bmp" And Right(path, 3) <> "png" And Right(path, 3) <> "ico" Then
         i = MsgBox("Inavlid File Type!", vbCritical, "Error")
-        Label3.Caption = "No File Selected!"
+        OpenPath.Caption = "No File Selected!"
     Else
-        Label3.Caption = Path
+        OpenPath.Caption = path
+        SaveCmd.Enabled = True
     End If
-    
 cancel:
 End Sub
 
-Private Sub Command2_Click()
-    
-    If Label3.Caption = "No File Selected!" Then
+Private Sub SaveCmd_Click()
+    Dim i As Integer, path, ext As String
+    If OpenPath.Caption = "No File Selected!" Then
         i = MsgBox("Selected Source Image First!", vbCritical, "Error")
     Else
-        
-        Path = Label3.Caption
-        If Right(Path, 3) = "jpg" Then
+        path = OpenPath.Caption
+        If Right(path, 3) = "jpg" Then
             ext = "png"
         Else
-            ext = Right(Path, 3)
+            ext = Right(path, 3)
         End If
-       
         On Error GoTo cancel
         CommonDialog2.Filter = "Image files (*.png, *.bmp, *.ico)|*.png;*.bmp;*.ico|PNG Files (*.png)|*.png|Bitmap Files (*.bmp)|*.bmp|Icon Files (*.ico)|*.ico"
         CommonDialog2.DefaultExt = ext
         CommonDialog2.Flags = cdlOFNNoChangeDir Or cdlOFNOverwritePrompt Or cdlOFNPathMustExist Or cdlOFNCreatePrompt
         CommonDialog2.ShowSave
-        Path = CommonDialog2.Filename
-        If Right(Path, 3) <> "bmp" And Right(Path, 3) <> "png" And Right(Path, 3) <> "ico" Then
+        path = CommonDialog2.Filename
+        If Right(path, 3) <> "bmp" And Right(path, 3) <> "png" And Right(path, 3) <> "ico" Then
             i = MsgBox("Inavlid File Type!", vbCritical, "Error")
-            Label4.Caption = "No File Selected!"
+            SavePath.Caption = "No File Selected!"
         Else
-            Label4.Caption = Path
+            SavePath.Caption = path
+            EncodeCmd.Visible = True
+            EncodeCmd.SetFocus
         End If
     End If
-    
 cancel:
 End Sub
 
-Private Sub Command3_Click()
-    
-    If Label3.Caption <> "No File Selected!" And Label4.Caption <> "No File Selected!" Then
-
-        Dim iFileNo, lineCount As Integer, ipString, opString As String
+Private Sub EncodeCmd_Click()
+    Dim i As Integer
+    If OpenPath.Caption <> "No File Selected!" And SavePath.Caption <> "No File Selected!" Then
+        Dim iFileNo, lineCount As Integer, val_exe As Double, opString As String
         iFileNo = FreeFile
         Open "ipe.txt" For Output As #iFileNo
-        Print #iFileNo, Encrypt(Label3.Caption, 0)
-        Print #iFileNo, Encrypt(Label4.Caption, 0)
-        Print #iFileNo, Encrypt(PasswordBox, 79)
-        Print #iFileNo, Encrypt(Text, 79)
+        Print #iFileNo, OpenPath.Caption
+        Print #iFileNo, SavePath.Caption
+        Print #iFileNo, PasswordBox
+        Print #iFileNo, Text
         Close #iFileNo
-        
-        Dim val_exe As Double
         val_exe = Shell("encode.bat", vbHide)
-    
         While IsOpenProcess(val_exe)
             'Wait for process to end
         Wend
-    
         iFileNo = FreeFile
         Open "ope.txt" For Input As #iFileNo
         Line Input #iFileNo, opString
         If opString = "True" Then
             Line Input #iFileNo, opString
+            Close #iFileNo
+            Kill ("ope.txt")
             MsgBox opString, vbOKOnly, "Results"
+            OpenPath.Caption = SavePath.Caption
+            MsgBox "The encoded image is now displayed in the Picture Box.", vbOKOnly, "Results"
         Else
             Line Input #iFileNo, opString
+            Close #iFileNo
+            Kill ("ope.txt")
             MsgBox opString, vbCritical, "Results"
         End If
-        Close #iFileNo
-        
-        val_exe = Shell("removeEFiles.bat", vbHide)
     Else
         i = MsgBox("Image path(s) not set!", vbCritical, "ERROR")
     End If
 End Sub
 
-Private Sub Label3_Change()
-    If Label3.Caption <> "No File Selected!" Then
-        Picture1.Picture = Nothing
-        Picture1.Cls
-        Picture1.Picture = Picture()
-        Picture1.Picture = LoadPictureEx(Label3.Caption)
-        Picture1.PaintPicture Picture1.Picture, 0, 0, 5175, 4215, opcode = vbSrcCopy
-        Picture1.AutoRedraw = False
-        Picture1.ScaleMode = vbPixels
+Private Sub OpenPath_Change()
+    If OpenPath.Caption <> "No File Selected!" Then
+        Picture1.AutoRedraw = True
+        Picture1.Visible = True
+        Picture1.Picture = LoadPictureEx(OpenPath.Caption)
+        Picture1.PaintPicture Picture1.Picture, 0, 0, 5175, 4215
+    Else
+        Picture1.Visible = False
     End If
 End Sub
 
-Private Sub Label3_Click()
-    If (Label3.Caption <> "No File Selected!") Then
-        i = MsgBox(Label3.Caption, vbInformation, "Source Image Path")
+Private Sub OpenPath_Click()
+    Dim i As Integer
+    If (OpenPath.Caption <> "No File Selected!") Then
+        i = MsgBox(OpenPath.Caption, vbInformation, "Source Image Path")
     Else
-        i = MsgBox(Label3.Caption, vbCritical, "Source Image Path")
+        i = MsgBox(OpenPath.Caption, vbCritical, "Source Image Path")
     End If
 End Sub
 
-Private Sub Label4_Click()
-    If (Label4.Caption <> "No File Selected!") Then
-        i = MsgBox(Label4.Caption, vbInformation, "Destination Image Path")
+Private Sub SavePath_Click()
+    Dim i As Integer
+    If (SavePath.Caption <> "No File Selected!") Then
+        i = MsgBox(SavePath.Caption, vbInformation, "Destination Image Path")
     Else
-        i = MsgBox(Label4.Caption, vbCritical, "Destination Image Path")
+        i = MsgBox(SavePath.Caption, vbCritical, "Destination Image Path")
     End If
 End Sub
 
 Private Sub PasswordBox_DblClick()
     PasswordBox = ""
     PasswordBox.PasswordChar = "*"
+    PasswordBox.FontSize = 16
 End Sub
 
 Private Sub Text_DblClick()

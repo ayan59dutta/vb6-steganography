@@ -1,5 +1,6 @@
 import numpy as np
 from PIL import Image
+import os
 
 def decode(password, image_path):
     image = Image.open(image_path)
@@ -37,7 +38,7 @@ def decode(password, image_path):
             while i+1 < len_text_hex:
                 text += chr(int(text_hex[i:i+2], 16))
                 i += 2
-            if ord(text[-1]) == 16:
+            if len(text) > 1 and ord(text[-1]) == 16:
                 text = text[:-1]
             return (True, text)
         elif flag_eof == False and flag_pass == True:
@@ -50,19 +51,20 @@ def decode(password, image_path):
         error_msg = 'Image contains no hidden text.'
         return (False, error_msg)
 
-def decrypt(ciphertext, key):
-    plaintext = ''
-    for character in ciphertext:
-        plaintext += chr((ord(character)-key)%256)
-    return plaintext
-
 if __name__ == '__main__':
-    fp = open('ipd.txt')
-    image_path = fp.readline()[:-1]
-    password = fp.readline()[:-1]
-    fp.close()
-    flag_success = decode(password, decrypt(image_path, 0))
-    fp = open('opd.txt', 'w')
-    fp.write(str(flag_success[0])+'\n')
-    fp.write(flag_success[1])
-    fp.close()
+    try:
+        fp = open('ipd.txt')
+        image_path = fp.readline()[:-1]
+        password = fp.readline()[:-1]
+        fp.close()
+        os.remove('ipd.txt')
+        flag_success = decode(password, image_path)
+        fp = open('opd.txt', 'w')
+        fp.write(str(flag_success[0])+'\n')
+        fp.write(flag_success[1])
+        fp.close()
+    except:
+        fp = open('opd.txt', 'w')
+        fp.write(str(False) + '\n')
+        fp.write('Error in image.' + '\n')
+        fp.close()
