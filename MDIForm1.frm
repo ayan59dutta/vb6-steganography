@@ -1,5 +1,5 @@
 VERSION 5.00
-Begin VB.MDIForm MDIForm1 
+Begin VB.MDIForm StegForm 
    BackColor       =   &H8000000C&
    Caption         =   "Steganography"
    ClientHeight    =   6570
@@ -19,7 +19,7 @@ Begin VB.MDIForm MDIForm1
       Caption         =   "&About"
    End
 End
-Attribute VB_Name = "MDIForm1"
+Attribute VB_Name = "StegForm"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
@@ -56,4 +56,3 @@ Private Sub Encode_Click()
     End If
     EncodeForm.Show
 End Sub
-

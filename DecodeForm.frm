@@ -157,6 +157,7 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
+
 Private Sub OpenCmd_Click()
     Dim path As String, i As Integer
     On Error GoTo cancel
@@ -174,6 +175,7 @@ Private Sub OpenCmd_Click()
     End If
 cancel:
 End Sub
+
 Private Sub DecodeCmd_Click()
     If OpenPath.Caption <> "No File Selected!" Then
         Dim iFileNo, lineCount, i As Integer, valExe As Double, line, Text As String
@@ -200,7 +202,7 @@ Private Sub DecodeCmd_Click()
         Else
             Line Input #iFileNo, line
             Close #iFileNo
-            Kill ("ipd.txt")
+            Kill ("opd.txt")
             MsgBox line, vbCritical, "Results"
         End If
     Else

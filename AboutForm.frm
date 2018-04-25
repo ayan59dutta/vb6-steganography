@@ -25,7 +25,7 @@ Begin VB.Form AboutForm
    WindowState     =   2  'Maximized
    Begin VB.CommandButton cmdSysInfo 
       BackColor       =   &H00FFFFFF&
-      Caption         =   "System Info"
+      Caption         =   "&System Info"
       BeginProperty Font 
          Name            =   "Lucida Calligraphy"
          Size            =   8.25
