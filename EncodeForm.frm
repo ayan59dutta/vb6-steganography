@@ -36,7 +36,7 @@ Begin VB.Form EncodeForm
       Height          =   495
       Left            =   2160
       TabIndex        =   11
-      Top             =   5280
+      Top             =   5400
       Visible         =   0   'False
       Width           =   2175
    End
@@ -62,7 +62,7 @@ Begin VB.Form EncodeForm
       Height          =   375
       Left            =   2160
       TabIndex        =   7
-      Top             =   4320
+      Top             =   4440
       Width           =   1335
    End
    Begin VB.PictureBox Picture1 
@@ -98,7 +98,7 @@ Begin VB.Form EncodeForm
       Height          =   375
       Left            =   2160
       TabIndex        =   2
-      Top             =   3360
+      Top             =   3480
       Width           =   1335
    End
    Begin VB.TextBox PasswordBox 
@@ -115,7 +115,7 @@ Begin VB.Form EncodeForm
       Left            =   2160
       TabIndex        =   1
       Text            =   "Password"
-      Top             =   2400
+      Top             =   2520
       Width           =   3975
    End
    Begin VB.TextBox Text 
@@ -132,7 +132,7 @@ Begin VB.Form EncodeForm
       Left            =   2160
       TabIndex        =   0
       Text            =   "Enter Your Text Here"
-      Top             =   1080
+      Top             =   1200
       Width           =   3975
    End
    Begin MSComDlg.CommonDialog CommonDialog2 
@@ -158,7 +158,7 @@ Begin VB.Form EncodeForm
       Height          =   615
       Left            =   480
       TabIndex        =   10
-      Top             =   4200
+      Top             =   4320
       Width           =   1455
    End
    Begin VB.Label Label5 
@@ -177,7 +177,7 @@ Begin VB.Form EncodeForm
       Height          =   375
       Left            =   480
       TabIndex        =   9
-      Top             =   3360
+      Top             =   3480
       Width           =   1455
    End
    Begin VB.Label SavePath 
@@ -196,7 +196,7 @@ Begin VB.Form EncodeForm
       Height          =   855
       Left            =   4080
       TabIndex        =   8
-      Top             =   4320
+      Top             =   4440
       Width           =   2055
    End
    Begin VB.Label OpenPath 
@@ -215,7 +215,7 @@ Begin VB.Form EncodeForm
       Height          =   855
       Left            =   4080
       TabIndex        =   5
-      Top             =   3360
+      Top             =   3480
       Width           =   2055
    End
    Begin VB.Label Label2 
@@ -234,7 +234,7 @@ Begin VB.Form EncodeForm
       Height          =   615
       Left            =   480
       TabIndex        =   4
-      Top             =   2400
+      Top             =   2520
       Width           =   1095
    End
    Begin VB.Label Label1 
@@ -253,7 +253,7 @@ Begin VB.Form EncodeForm
       Height          =   615
       Left            =   480
       TabIndex        =   3
-      Top             =   1200
+      Top             =   1320
       Width           =   1095
    End
 End
@@ -269,44 +269,44 @@ Private Sub Form_Load()
 End Sub
 
 Private Sub OpenCmd_Click()
-    Dim Path As String, i As Integer
+    Dim path As String, i As Integer
     On Error GoTo cancel
     CommonDialog1.Filter = "Image files (*.jpg, *.png, *.bmp, *.ico)|*.jpg;*.png;*.bmp;*.ico|PNG Files (*.png)|*.png|JPEG Files (*.jpg)|*.jpg|Bitmap Files (*.bmp)|*.bmp|Icon Files (*.ico)|*.ico"
     CommonDialog1.Flags = cdlOFNFileMustExist Or cdlOFNNoChangeDir
     CommonDialog1.ShowOpen
-    Path = CommonDialog1.Filename
-    If Right(Path, 3) <> "jpg" And Right(Path, 3) <> "bmp" And Right(Path, 3) <> "png" And Right(Path, 3) <> "ico" Then
+    path = CommonDialog1.Filename
+    If Right(path, 3) <> "jpg" And Right(path, 3) <> "bmp" And Right(path, 3) <> "png" And Right(path, 3) <> "ico" Then
         i = MsgBox("Inavlid File Type!", vbCritical, "Error")
         OpenPath.Caption = "No File Selected!"
     Else
-        OpenPath.Caption = Path
+        OpenPath.Caption = path
         SaveCmd.Enabled = True
     End If
 cancel:
 End Sub
 
 Private Sub SaveCmd_Click()
-    Dim i As Integer, Path, ext As String
+    Dim i As Integer, path, ext As String
     If OpenPath.Caption = "No File Selected!" Then
         i = MsgBox("Selected Source Image First!", vbCritical, "Error")
     Else
-        Path = OpenPath.Caption
-        If Right(Path, 3) = "jpg" Then
+        path = OpenPath.Caption
+        If Right(path, 3) = "jpg" Then
             ext = "png"
         Else
-            ext = Right(Path, 3)
+            ext = Right(path, 3)
         End If
         On Error GoTo cancel
         CommonDialog2.Filter = "Image files (*.png, *.bmp, *.ico)|*.png;*.bmp;*.ico|PNG Files (*.png)|*.png|Bitmap Files (*.bmp)|*.bmp|Icon Files (*.ico)|*.ico"
         CommonDialog2.DefaultExt = ext
         CommonDialog2.Flags = cdlOFNNoChangeDir Or cdlOFNOverwritePrompt Or cdlOFNPathMustExist Or cdlOFNCreatePrompt
         CommonDialog2.ShowSave
-        Path = CommonDialog2.Filename
-        If Right(Path, 3) <> "bmp" And Right(Path, 3) <> "png" And Right(Path, 3) <> "ico" Then
+        path = CommonDialog2.Filename
+        If Right(path, 3) <> "bmp" And Right(path, 3) <> "png" And Right(path, 3) <> "ico" Then
             i = MsgBox("Inavlid File Type!", vbCritical, "Error")
             SavePath.Caption = "No File Selected!"
         Else
-            SavePath.Caption = Path
+            SavePath.Caption = path
             EncodeCmd.Visible = True
             EncodeCmd.SetFocus
         End If
